@@ -10,11 +10,11 @@
 <div>
     Here you can register your new Account
 </div>
-<form method="post" >
-    Login: <input >
-    Password: <input >
-    First Name: <input >
-    Last Name: <input >
+<form method="post" th:object="${newPerson}">
+    Login: <input th:field="*{login}">
+    Password: <input th:field="*{password}">
+    First Name: <input th:field="*{firstName}">
+    Last Name: <input th:field="*{lastName}">
     <input type="submit">
 </form>
 </body>

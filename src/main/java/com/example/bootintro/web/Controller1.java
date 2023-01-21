@@ -1,6 +1,6 @@
 package com.example.bootintro.web;
 
-import com.example.bootintro.model.Person;
+import com.example.bootintro.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +15,11 @@ import java.util.List;
 
 @Controller
 public class Controller1 {
-    List<Person> people = new ArrayList<>();
+    List<User> people = new ArrayList<>();
 
     public Controller1() {
-        Person p = new Person("Jan", "Novák"); // vytahnlo z app. log.
-        Person p2 = new Person("Tomáš", "Nový");
+        User p = new User("Jan", "Novák", "123","jan@novak.cz"); // vytahnlo z app. log.
+        User p2 = new User("Tomáš", "Nový","456","tomas@nova.cz");
         people.add(p);
         people.add(p2);
     }
@@ -38,21 +38,21 @@ public class Controller1 {
 
     @GetMapping("/test3")
     @ResponseBody
-    public Person test3() {
-        Person p = new Person("Jan", "Novák"); // vytahnlo z app. log.
+    public User test3() {
+        User p = new User("Jan", "Novák", "123","jan@novak.cz"); // vytahnlo z app. log.
         return p;
     }
 
     @GetMapping("/test4")
     public String test4(Model m) {
         m.addAttribute("people", people);
-        m.addAttribute("newPerson", new Person("", ""));
+        m.addAttribute("newPerson", new User("", "","",""));
         //m.addAttribute("person", p);
         return "person-detail";
     }
 
     @PostMapping("/test4")
-    public String test4post(Model m, @ModelAttribute Person p) {
+    public String test4post(Model m, @ModelAttribute User p) {
         people.add(p);
         return "redirect:/test4";
     }
