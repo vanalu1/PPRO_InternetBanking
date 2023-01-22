@@ -16,6 +16,16 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts;
+
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public User()
     {

@@ -1,4 +1,4 @@
-package com.example.bootintro.web;
+/*package com.example.bootintro.web;
 
 import com.example.bootintro.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +54,4 @@ public class UserController {
     public String welcome(Model model) {
         return "welcome";
     }
-}
+}*/

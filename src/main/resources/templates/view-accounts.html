@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All accounts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>List of all accounts</h1>
+    <div>
+        <a th:href="@{/jpa/}"><button >Home Page</button></a>
+        <a th:href="@{/jpa/sign_in}"><button >Sign in</button></a>
+        <a th:href="@{/jpa/register}"><button >Register</button></a>
+        <a th:href="@{/jpa/accounts}"><button >Accounts</button></a>
+    </div>
+    <table>
+        <tr th:each="account: ${accounts}">
+            <td th:text="${account.getId()}"></td>
+            <td th:text="${account.getBalance()}"></td>
+            <td th:text="${account.getUser()}"></td>
+        </tr>
+    </table>
+    <div th:if="${accounts.size()} lt 1">
+        No Accounts in database
+    </div>
+</div>
+</body>
+</html>

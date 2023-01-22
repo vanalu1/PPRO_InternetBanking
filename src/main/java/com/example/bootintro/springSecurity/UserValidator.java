@@ -1,4 +1,4 @@
-package com.example.bootintro.web;
+/*package com.example.bootintro.web;
 
 import com.example.bootintro.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +33,4 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "Size.userForm.password");
         }
     }
-}
+}*/

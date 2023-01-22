@@ -1,4 +1,4 @@
-package com.example.bootintro.web;
+/*package com.example.bootintro.web;
 
 import com.example.bootintro.model.Role;
 import com.example.bootintro.model.User;
@@ -34,4 +34,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), grantedAuthorities);
     }
-}
+}*/

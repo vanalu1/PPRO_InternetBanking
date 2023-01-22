@@ -1,4 +1,4 @@
-package com.example.bootintro.web;
+/*package com.example.bootintro.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -33,4 +33,5 @@ public class WebSecurityConfig extends WebSecurityConfiguration {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
-}
+
+}*/

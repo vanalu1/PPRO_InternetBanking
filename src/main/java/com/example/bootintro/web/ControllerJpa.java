@@ -33,13 +33,13 @@ public class ControllerJpa {
     @GetMapping("jpa/sign_in")
     public String signIn()
     {
-        return "account-login";
+        return "user-login";
     }
     @GetMapping("jpa/register")
     public String register(Model m)
     {
         m.addAttribute("newPerson", new User("", "","",""));
-        return "account-create";
+        return "user-create";
     }
 
     @PostMapping("/jpa/register")
