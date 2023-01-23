@@ -12,6 +12,21 @@
   <input th:field="*{account.id}">
   <span>User login: </span>
   <input th:field="*{account.user.login}">
+
+    <a th:href="@{'/jpa/account/delete/'+${account.id}}">Delete account</a>
+    <a th:href="@{'/jpa/account/'+${account.id}+'/new_activity'}"><button >Create new activity</button></a>
+    <br>
+
+    <table>
+        <tr th:each="accountActivity: ${accountActivitiesFound}">
+            <td th:text="${accountActivity.getActivityType()}"></td>
+            <td th:text="${accountActivity.getValue()}"></td>
+
+        </tr>
+    </table>
+    <div th:if="${accountActivitiesFound.size()} lt 1">
+        No activities found
+    </div>
 </div>
 </body>
 </html>

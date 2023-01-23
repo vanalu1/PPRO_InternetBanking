@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Activity create</h2>
+<div class="container">
+  <form method="post" th:object="${newAccountActivity}">
+      <span>Activity type: </span>
+      <input th:field="*{activityType}" value="kokt">
+    <span>Enter balance: </span>
+    <input th:field="*{value}">
+<!--      <input type="hidden" th:value="*{account}" th:text="${accountTemp.id}">-->
+<!--      <input type="hidden" th:field="*{account.id}">-->
+      <!--      <option th:each="user: ${users}" th:text="${user.getLogin()}"/>-->
+
+      <select name="users"  th:field="*{account}" hidden="hidden">
+              <option th:text="${account.id}" th:value="${account.id}"></option>
+      </select>
+    <br>
+    <input type="submit">
+  </form>
+
+</div>
+
+</body>
+</html>
