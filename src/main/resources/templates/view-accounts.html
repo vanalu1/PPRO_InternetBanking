@@ -13,16 +13,22 @@
         <a th:href="@{/jpa/sign_in}"><button >Sign in</button></a>
         <a th:href="@{/jpa/register}"><button >Register</button></a>
         <a th:href="@{/jpa/accounts}"><button >Accounts</button></a>
+        <a th:href="@{/jpa/accounts/create}"><button >Create account</button></a>
     </div>
+
+    <div class="table-active">
     <table>
         <tr th:each="account: ${accounts}">
             <td th:text="${account.getId()}"></td>
             <td th:text="${account.getBalance()}"></td>
-            <td th:text="${account.getUser()}"></td>
+            <td th:text="${account.user.login}"></td>
+            <td><a th:href="@{'/jpa/account/detail/'+${account.id}}">Detail</a></td>
+
         </tr>
     </table>
     <div th:if="${accounts.size()} lt 1">
         No Accounts in database
+    </div>
     </div>
 </div>
 </body>

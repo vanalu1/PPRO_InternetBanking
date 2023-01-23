@@ -16,7 +16,7 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Account> accounts;
 
     public List<Account> getAccounts() {

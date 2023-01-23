@@ -17,9 +17,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(int balance, List<AccountActivity> accountActivities, User user) {
+    public Account(int balance, User user) {
         this.balance = balance;
-        this.accountActivities = accountActivities;
         this.user = user;
     }
 
@@ -53,5 +52,9 @@ public class Account {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getUserID(){
+        return user.getId();
     }
 }

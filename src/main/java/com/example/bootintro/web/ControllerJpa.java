@@ -39,7 +39,7 @@ public class ControllerJpa {
     public String register(Model m)
     {
         m.addAttribute("newPerson", new User("", "","",""));
-        return "user-create";
+        return "user-register";
     }
 
     @PostMapping("/jpa/register")

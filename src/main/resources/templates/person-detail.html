@@ -18,8 +18,10 @@
     No data
 </div>
 <form method="post" th:object="${newPerson}">
-    First name: <input th:field="*{firstName}">
-    Last name: <input th:field="*{lastName}">
+    <span>First name:</span>
+    <input th:field="*{firstName}">
+    <span>Last name: </span>
+    <input th:field="*{lastName}">
     <input type="submit">
 </form>
 </body>
