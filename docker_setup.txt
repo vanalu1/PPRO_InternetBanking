@@ -1,0 +1,18 @@
+docker run -p 3306:3306  --name some-mariadb -e MARIADB_ROOT_PASSWORD=my-secret-pw -d mariadb:latest
+
+linux container -> zapnul jsem pres windows a pak zpatky na linux
+
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "features": {
+    "buildkit": true
+  }
+}
+
+posloucha na http://localhost:8080/jpa/
