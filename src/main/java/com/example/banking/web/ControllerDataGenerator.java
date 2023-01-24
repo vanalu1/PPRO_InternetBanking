@@ -48,18 +48,19 @@ public class ControllerDataGenerator {
         Account account6 = new Account(60000,user5);
         Account account7 = new Account(5100,user4);
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
 
         AccountActivity accountActivity1 = new AccountActivity("Expense",100,account1, dtf.toString());
-        AccountActivity accountActivity2 = new AccountActivity("Income",150,account2, " ");
-        AccountActivity accountActivity3 = new AccountActivity("Expense",500,account3, " ");
-        AccountActivity accountActivity4 = new AccountActivity("Income",690,account4, " ");
-        AccountActivity accountActivity5 = new AccountActivity("Income",470,account5, " ");
-        AccountActivity accountActivity6 = new AccountActivity("Income",50,account1, " ");
-        AccountActivity accountActivity7 = new AccountActivity("Expense",800,account7, " ");
-        AccountActivity accountActivity8 = new AccountActivity("Income",970,account3, " ");
-        AccountActivity accountActivity9 = new AccountActivity("Income",490,account5, " ");
-        AccountActivity accountActivity10 = new AccountActivity("Expense",550,account4, " ");
+        AccountActivity accountActivity2 = new AccountActivity("Income",150,account2, dtf.format(now));
+        AccountActivity accountActivity3 = new AccountActivity("Expense",500,account3, dtf.format(now));
+        AccountActivity accountActivity4 = new AccountActivity("Income",690,account4, dtf.format(now));
+        AccountActivity accountActivity5 = new AccountActivity("Income",470,account5, dtf.format(now));
+        AccountActivity accountActivity6 = new AccountActivity("Income",50,account1, dtf.format(now));
+        AccountActivity accountActivity7 = new AccountActivity("Expense",800,account7, dtf.format(now));
+        AccountActivity accountActivity8 = new AccountActivity("Income",970,account3, dtf.format(now));
+        AccountActivity accountActivity9 = new AccountActivity("Income",490,account5, dtf.format(now));
+        AccountActivity accountActivity10 = new AccountActivity("Expense",550,account4, dtf.format(now));
 
         roleRepository.save(role1);
         roleRepository.save(role2);
