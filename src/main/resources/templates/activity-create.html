@@ -9,16 +9,24 @@
 <div class="container">
   <form method="post" th:object="${newAccountActivity}">
       <span>Activity type: </span>
-      <select th:field="*{activityType}">
-          <option value="Expense">Expense</option>
-          <option value="Income">Income</option>
-          <option value="Transfer">Transfer</option>
+      <select th:field="*{activityType}" id="sel">
+          <option value="Expense" onclick="toggleFalse()">Expense</option>
+          <option value="Income" onclick="toggleFalse()">Income</option>
+          <option value="Outgoing Transfer" onclick="toggleTrue()">Transfer</option>
       </select>
-    <span>Enter balance: </span>
-    <input th:field="*{value}">
-<!--      <input type="hidden" th:value="*{account}" th:text="${accountTemp.id}">-->
-<!--      <input type="hidden" th:field="*{account.id}">-->
-      <!--      <option th:each="user: ${users}" th:text="${user.getLogin()}"/>-->
+
+      <span>Enter balance: </span>
+      <input th:field="*{value}">
+
+      <div id="cont" style="display: none" >
+          <select th:name="transferId" >
+              <th:block th:each="acc: ${allOtherAccounts}" >
+                  <option th:text="${acc.id}" th:value="${acc.id}"></option>
+              </th:block>
+          </select>
+      </div>
+
+
 
       <select name="users"  th:field="*{account}" hidden="hidden">
               <option th:text="${account.id}" th:value="${account.id}"></option>
@@ -30,4 +38,14 @@
 </div>
 
 </body>
+<script>
+    function toggleTrue() {
+        var cont = document.getElementById('cont');
+        cont.style.display = 'block';
+    }
+    function toggleFalse() {
+        var cont = document.getElementById('cont');
+        cont.style.display = 'none';
+    }
+</script>
 </html>
