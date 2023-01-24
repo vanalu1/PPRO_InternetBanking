@@ -3,37 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<h2>Activity create</h2>
+
+
 <div class="container">
-  <form method="post" th:object="${newAccountActivity}">
-      <span>Activity type: </span>
-      <select th:field="*{activityType}" id="sel">
-          <option value="Expense" onclick="toggleFalse()">Expense</option>
-          <option value="Income" onclick="toggleFalse()">Income</option>
-          <option value="Outgoing Transfer" onclick="toggleTrue()">Transfer</option>
-      </select>
 
-      <span>Enter balance: </span>
-      <input th:field="*{value}">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div id="navbarNav">
+            <div class="container">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/jpa/}">Home Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/jpa/sign_in}">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/jpa/register}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  active" th:href="@{/jpa/accounts}">Accounts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h2>Create new account activity</h2>
 
-      <div id="cont" style="display: none" >
-          <select th:name="transferId" >
-              <th:block th:each="acc: ${allOtherAccounts}" >
-                  <option th:text="${acc.id}" th:value="${acc.id}"></option>
-              </th:block>
-          </select>
-      </div>
+    <form method="post" th:object="${newAccountActivity}">
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">Activity type: </label>
+            <div class="col-sm-4">
+                <select th:field="*{activityType}" class="form-control form-select">
+                    <option value="Expense" onclick="toggleFalse()">Expense</option>
+                    <option value="Income" onclick="toggleFalse()">Income</option>
+                    <option value="Outgoing Transfer" onclick="toggleTrue()">Transfer</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">Enter balance: </label>
+            <div class="col-sm-4">
+                <input class="form-control" type="number" th:field="*{value}">
+            </div>
+        </div>
+        <br>
+        <div class="form-group row" >
+            <label id="cont" style="display: none" class="col-form-label col-sm-2">Balance transfer to: </label>
+            <div id="cont2" style="display: none" class="col-sm-4">
+                <select th:name="transferId" class="form-control form-select">
+                    <th:block th:each="acc: ${allOtherAccounts}">
+                        <option th:text="${acc.user.login}" th:value="${acc.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+        </div>
+        <br>
+
+        <!--      <span>Activity type: </span>-->
+        <!--      <select th:field="*{activityType}" class="form-control form-select">-->
+        <!--          <option value="Expense" onclick="toggleFalse()">Expense</option>-->
+        <!--          <option value="Income" onclick="toggleFalse()">Income</option>-->
+        <!--          <option value="Outgoing Transfer" onclick="toggleTrue()">Transfer</option>-->
+        <!--      </select>-->
+
+        <!--      <span>Enter balance: </span>-->
+        <!--      <input th:field="*{value}">-->
+
+<!--        <div id="cont" style="display: none">-->
+<!--            <select th:name="transferId">-->
+<!--                <th:block th:each="acc: ${allOtherAccounts}">-->
+<!--                    <option th:text="${acc.user.login}" th:value="${acc.id}"></option>-->
+<!--                </th:block>-->
+<!--            </select>-->
+<!--        </div>-->
 
 
+        <select name="users" th:field="*{account}" hidden="hidden">
+            <option th:text="${account.id}" th:value="${account.id}"></option>
+        </select>
+<!--        <br>-->
 
-      <select name="users"  th:field="*{account}" hidden="hidden">
-              <option th:text="${account.id}" th:value="${account.id}"></option>
-      </select>
-    <br>
-    <input type="submit">
-  </form>
+        <div class="text-center p-3 col-sm-5">
+            <button class="btn btn-primary" type="submit" >Create activity</button>
+<!--            <input type="submit">-->
+        </div>
+
+    </form>
 
 </div>
 
@@ -41,11 +102,16 @@
 <script>
     function toggleTrue() {
         var cont = document.getElementById('cont');
+        var cont2 = document.getElementById('cont2');
         cont.style.display = 'block';
+        cont2.style.display = 'block';
     }
+
     function toggleFalse() {
         var cont = document.getElementById('cont');
+        var cont2 = document.getElementById('cont2');
         cont.style.display = 'none';
+        cont2.style.display = 'none';
     }
 </script>
 </html>

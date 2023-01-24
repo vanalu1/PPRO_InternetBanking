@@ -8,30 +8,69 @@
 </head>
 <body>
 <div class="container">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div id="navbarNav">
+      <div class="container">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/jpa/}">Home Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/jpa/sign_in}">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/jpa/register}">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  active" th:href="@{/jpa/accounts}">Accounts</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <h1>Account creation</h1>
   <div class="">
     <span>Create your new banking account</span>
   </div>
-  <div>
-    <a th:href="@{/jpa/}"><button >Home Page</button></a>
-    <a th:href="@{/jpa/sign_in}"><button >Sign in</button></a>
-    <a th:href="@{/jpa/register}"><button >Register</button></a>
-    <a th:href="@{/jpa/accounts}"><button >Accounts</button></a>
 
-  </div>
+<!--  <form method="post" th:object="${newAccount}">-->
+<!--    <span>Enter balance: </span>-->
+<!--    <input th:field="*{balance}">-->
+<!--    <span>user: </span>-->
+<!--    <select name="users"  th:field="*{user}" class="form-control">-->
+<!--      <th:block th:each="user: ${users}" >-->
+<!--        <option th:text="${user.login}" th:value="${user.id}"></option>-->
+<!--      </th:block>-->
+<!--    </select>-->
+<!--    <br>-->
+<!--    <input type="submit">-->
+<!--  </form>-->
+
 
   <form method="post" th:object="${newAccount}">
-    <span>Enter balance: </span>
-    <input th:field="*{balance}">
-    <span>user: </span>
-    <select name="users"  th:field="*{user}" class="form-control">
-      <th:block th:each="user: ${users}" >
-        <option th:text="${user.login}" th:value="${user.id}"></option>
-      </th:block>
-<!--      <option th:each="user: ${users}" th:text="${user.getLogin()}"/>-->
-    </select>
-    <br>
-    <input type="submit">
+    <div class="m-3">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2">Enter balance: </label>
+        <div class="col-sm-4">
+          <input class="form-control" type="number" th:field="*{balance}">
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2">user: </label>
+        <div class="col-sm-4">
+          <select name="users"  th:field="*{user}" class="form-control form-select">
+            <th:block th:each="user: ${users}" >
+              <option th:text="${user.login}" th:value="${user.id}"></option>
+            </th:block>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-center p-3 col-sm-5">
+        <button class="btn btn-primary" type="submit">Create account</button>
+      </div>
+    </div>
   </form>
 </div>
 

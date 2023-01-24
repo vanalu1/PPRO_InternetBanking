@@ -1,31 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Account detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
 <div>
-  <span>Balance:</span>
-  <input th:field="*{account.balance}">
-  <span>Account id: </span>
-  <input th:field="*{account.id}">
-  <span>User login: </span>
-  <input th:field="*{account.user.login}">
 
-    <a th:href="@{'/jpa/account/delete/'+${account.id}}">Delete account</a>
-    <a th:href="@{'/jpa/account/'+${account.id}+'/new_activity'}"><button >Create new activity</button></a>
-    <br>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div id="navbarNav">
+                <div class="container">
+                    <ul class="navbar-nav text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/jpa/}">Home Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/jpa/sign_in}">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/jpa/register}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  active" th:href="@{/jpa/accounts}">Accounts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <h1>Account detail</h1>
+        <form>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-1">Balance: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" th:field="*{account.balance}" style="pointer-events: none"
+                           readonly>
+                </div>
+                <div class="col-sm-2">
+                    <a class="btn btn-danger" th:href="@{'/jpa/account/delete/'+${account.id}}">Delete account</a>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-1">User login: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" th:field="*{account.user.login}"
+                           style="pointer-events: none" readonly>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-1">Account id: </label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" th:field="*{account.id}" style="pointer-events: none"
+                           readonly>
+                </div>
+            </div>
+        </form>
+        <br>
 
-    <table>
-        <tr th:each="accountActivity: ${accountActivitiesFound}">
-            <td th:text="${accountActivity.getActivityType()}"></td>
-            <td th:text="${accountActivity.getValue()}"></td>
+        <div>
+            <a th:href="@{'/jpa/account/'+${account.id}+'/new_activity'}">
+                <button class="btn btn-primary">Create new activity</button>
+            </a>
+        </div>
+        <br>
 
-        </tr>
-    </table>
-    <div th:if="${accountActivitiesFound.size()} lt 1">
-        No activities found
+<!--        <table>-->
+<!--            <tr th:each="accountActivity: ${accountActivitiesFound}">-->
+<!--                <td th:text="${accountActivity.getActivityType()}"></td>-->
+<!--                <td th:text="${accountActivity.getValue()}"></td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+
+        <h2>Account activity</h2>
+        <div class="col-sm-8">
+            <table class="table table-bordered" th:unless="${accountActivitiesFound.size()} lt 1">
+                <thead class="table-dark">
+                <tr>
+                    <td>Action</td>
+                    <td>Total balance</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="accountActivity: ${accountActivitiesFound}">
+                    <td th:text="${accountActivity.getActivityType()}"></td>
+                    <td th:text="${accountActivity.getValue()}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div th:if="${accountActivitiesFound.size()} lt 1">
+                No activities found
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
