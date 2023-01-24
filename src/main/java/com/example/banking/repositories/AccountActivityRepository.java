@@ -1,6 +1,6 @@
-package com.example.bootintro.repositories;
+package com.example.banking.repositories;
 
-import com.example.bootintro.model.AccountActivity;
+import com.example.banking.model.AccountActivity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

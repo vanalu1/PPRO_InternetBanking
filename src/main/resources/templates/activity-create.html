@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create activity</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
@@ -26,6 +26,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  active" th:href="@{/jpa/accounts}">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/jpa/users}">Users</a>
                     </li>
                 </ul>
             </div>
@@ -53,45 +56,30 @@
             </div>
         </div>
         <br>
-        <div class="form-group row" >
+        <div class="form-group row">
             <label id="cont" style="display: none" class="col-form-label col-sm-2">Balance transfer to: </label>
             <div id="cont2" style="display: none" class="col-sm-4">
                 <select th:name="transferId" class="form-control form-select">
                     <th:block th:each="acc: ${allOtherAccounts}">
-                        <option th:text="${acc.user.login}" th:value="${acc.id}"></option>
+                        <option th:text="${acc.user.login}+' '+${acc.id}" th:value="${acc.id}"></option>
                     </th:block>
                 </select>
             </div>
         </div>
         <br>
 
-        <!--      <span>Activity type: </span>-->
-        <!--      <select th:field="*{activityType}" class="form-control form-select">-->
-        <!--          <option value="Expense" onclick="toggleFalse()">Expense</option>-->
-        <!--          <option value="Income" onclick="toggleFalse()">Income</option>-->
-        <!--          <option value="Outgoing Transfer" onclick="toggleTrue()">Transfer</option>-->
-        <!--      </select>-->
-
-        <!--      <span>Enter balance: </span>-->
-        <!--      <input th:field="*{value}">-->
-
-<!--        <div id="cont" style="display: none">-->
-<!--            <select th:name="transferId">-->
-<!--                <th:block th:each="acc: ${allOtherAccounts}">-->
-<!--                    <option th:text="${acc.user.login}" th:value="${acc.id}"></option>-->
-<!--                </th:block>-->
-<!--            </select>-->
-<!--        </div>-->
-
+        <select name="date" th:field="*{date}" hidden="hidden">
+            <option id="date-time" value=" "></option>
+        </select>
 
         <select name="users" th:field="*{account}" hidden="hidden">
             <option th:text="${account.id}" th:value="${account.id}"></option>
         </select>
-<!--        <br>-->
+
+
 
         <div class="text-center p-3 col-sm-5">
-            <button class="btn btn-primary" type="submit" >Create activity</button>
-<!--            <input type="submit">-->
+            <button class="btn btn-primary" type="submit">Create activity</button>
         </div>
 
     </form>
@@ -113,5 +101,10 @@
         cont.style.display = 'none';
         cont2.style.display = 'none';
     }
+
+    var time = new Date();
+    var today = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + "   " + time.getDate() + "/" + (time.getMonth()+1) + "/" + time.getFullYear();
+    document.getElementById('date-time').innerHTML = today;
+    document.getElementById('date-time').value = today;
 </script>
 </html>

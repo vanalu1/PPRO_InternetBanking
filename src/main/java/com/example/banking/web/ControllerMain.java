@@ -1,27 +1,24 @@
-package com.example.bootintro.web;
+package com.example.banking.web;
 
-import com.example.bootintro.model.User;
-import com.example.bootintro.repositories.UserRepository;
+import com.example.banking.model.User;
+import com.example.banking.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
-public class ControllerJpa {
+public class ControllerMain {
 
     private UserRepository userRepository;
 
-    public ControllerJpa(UserRepository userRepository) {
+    public ControllerMain(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
-    @GetMapping("/jpa/people")
+    @GetMapping("/jpa/users")
     public String test4(Model m) {
         m.addAttribute("people", userRepository.findAll());
-        m.addAttribute("newPerson", new User("","","",""));
         return "person-detail";
     }
 
@@ -48,20 +45,13 @@ public class ControllerJpa {
         return "redirect:/jpa/";
     }
 
-    @PostMapping("/jpa/people")
-    public String test4post(Model m, @ModelAttribute User p) {
-        userRepository.save(p);
-        return "redirect:/jpa/people";
-    }
 
-    @PostMapping("/api/v1/people/add")
-    public User addPersonFromRequest(User p) {
-        return userRepository.save(p);
-    }
 
-    @GetMapping("/jpa/find/{id}")
-    public Optional<User> findByID(@PathVariable int id) {
-        return userRepository.findById(id);
-    }
+
+//    @PostMapping("/jpa/users")
+//    public String usersTest(Model m, @ModelAttribute User p) {
+//        userRepository.save(p);
+//        return "redirect:/jpa/people";
+//    }
 
 }

@@ -1,11 +1,11 @@
-package com.example.bootintro.web;
+package com.example.banking.web;
 
-import com.example.bootintro.model.Account;
-import com.example.bootintro.model.AccountActivity;
-import com.example.bootintro.model.User;
-import com.example.bootintro.repositories.AccountActivityRepository;
-import com.example.bootintro.repositories.AccountRepository;
-import com.example.bootintro.repositories.UserRepository;
+import com.example.banking.model.Account;
+import com.example.banking.model.AccountActivity;
+import com.example.banking.model.User;
+import com.example.banking.repositories.AccountActivityRepository;
+import com.example.banking.repositories.AccountRepository;
+import com.example.banking.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;

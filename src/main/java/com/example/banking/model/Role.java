@@ -1,4 +1,4 @@
-package com.example.bootintro.model;
+package com.example.banking.model;
 
 import javax.persistence.*;
 import java.util.Set;

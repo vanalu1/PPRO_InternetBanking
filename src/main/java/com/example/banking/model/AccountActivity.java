@@ -1,4 +1,4 @@
-package com.example.bootintro.model;
+package com.example.banking.model;
 
 import javax.persistence.*;
 
@@ -10,6 +10,7 @@ public class AccountActivity {
 
     private String activityType;
     private int value;
+    private String date;
 
     @ManyToOne
     private Account account;
@@ -17,10 +18,11 @@ public class AccountActivity {
     public AccountActivity() {
     }
 
-    public AccountActivity(String activityType, int value, Account account) {
+    public AccountActivity(String activityType, int value, Account account, String date) {
         this.activityType = activityType;
         this.value = value;
         this.account = account;
+        this.date = date;
     }
 
     public String getActivityType() {
@@ -45,5 +47,13 @@ public class AccountActivity {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }
