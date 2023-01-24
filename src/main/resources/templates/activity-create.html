@@ -9,7 +9,11 @@
 <div class="container">
   <form method="post" th:object="${newAccountActivity}">
       <span>Activity type: </span>
-      <input th:field="*{activityType}" value="kokt">
+      <select th:field="*{activityType}">
+          <option value="Expense">Expense</option>
+          <option value="Income">Income</option>
+          <option value="Transfer">Transfer</option>
+      </select>
     <span>Enter balance: </span>
     <input th:field="*{value}">
 <!--      <input type="hidden" th:value="*{account}" th:text="${accountTemp.id}">-->

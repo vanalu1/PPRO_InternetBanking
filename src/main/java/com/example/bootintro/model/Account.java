@@ -9,7 +9,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int balance;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<AccountActivity> accountActivities;
     @ManyToOne
     private User user;

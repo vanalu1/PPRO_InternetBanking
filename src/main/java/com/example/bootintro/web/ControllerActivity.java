@@ -33,14 +33,29 @@ public class ControllerActivity {
         m.addAttribute("account", account);
         m.addAttribute("newAccountActivity", new AccountActivity());
 
-        System.out.println(account.getId());
 
         return "activity-create";
 
     }
 
     @PostMapping("/jpa/account/{id}/new_activity")
-    public String processActivity(Model m, @ModelAttribute AccountActivity p){
+    public String processActivity(Model m, @ModelAttribute AccountActivity p,@PathVariable("id") Integer id){
+
+        Account account = accountRepository.findById(id).get();
+        int temp = 0;
+        if (p.getActivityType().toString().equals("Expense")){
+            temp = account.getBalance();
+            temp -= p.getValue();
+            accountRepository.findById(id).get().setBalance(temp);
+            System.out.println(temp);
+        }
+        if (p.getActivityType().toString().equals("Income")){
+            temp = account.getBalance();
+            temp += p.getValue();
+            accountRepository.findById(id).get().setBalance(temp);
+            System.out.println(temp);
+        }
+
         accountActivityRepository.save(p);
         return "redirect:/jpa/account/detail/{id}";
     }
